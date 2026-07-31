@@ -18,6 +18,18 @@ cd "$REPO_DIR" || exit 1
 
 echo "=== $(date '+%Y-%m-%d %H:%M:%S') refresh starting ==="
 
+# Launched from Finder or launchd, PATH is minimal — fail loudly rather than
+# with a confusing stack trace. The scraper needs built-in fetch (Node 18+).
+if ! command -v node >/dev/null 2>&1; then
+  echo "ERROR: node is not on PATH. Open Terminal and run ./scripts/refresh.sh there."
+  exit 1
+fi
+NODE_MAJOR="$(node -p 'process.versions.node.split(".")[0]' 2>/dev/null || echo 0)"
+if [ "$NODE_MAJOR" -lt 18 ]; then
+  echo "ERROR: node $(node --version) is too old; the scraper needs Node 18 or newer."
+  exit 1
+fi
+
 if ! node scripts/scrape.mjs; then
   # Non-zero means every show failed — the site structure changed, or the
   # network is down. shows.json is left untouched, so nothing is lost.

@@ -9,15 +9,29 @@ about the upstream video hosts.
 ## How it works
 
 ```
-scripts/refresh.sh  (daily, from a home machine)
-        │  node scripts/scrape.mjs  →  commit + push
+npm run refresh   (once a day, from this machine)
+        │  scrape tamildhool  →  commit  →  push
         ▼
 data/shows.json  ──imported at build time──►  React SPA  ──►  GitHub Pages
                         (.github/workflows/deploy.yml, on push to main)
 ```
 
-There is no server. Deploys are fully automatic on push; only the scrape step
-needs a machine, and only because of the Cloudflare block described below.
+There is no server. Deploying is automatic on push; only the scrape step needs
+a machine, and only because of the Cloudflare block described below.
+
+## Commands
+
+Everything is an npm script. These are all of them:
+
+| Command              | What it does                                                     |
+| -------------------- | ---------------------------------------------------------------- |
+| `npm install`        | One time, after cloning.                                          |
+| `npm run dev`        | Local dev server at http://localhost:5173 with live reload.       |
+| `npm run scrape`     | **Fetch** latest episodes into `data/shows.json`. Does not push.  |
+| `npm run refresh`    | **Daily driver:** scrape, then commit + push only if data changed. |
+| `npm run deploy`     | Push `main` by hand (only if you committed something yourself).    |
+| `npm run build`      | Production build into `dist/`. CI does this for you.               |
+| `npm run preview`    | Serve the built `dist/` locally to check a production build.        |
 
 ## Everyday tasks
 
@@ -35,11 +49,11 @@ commit, done. It is the only file meant to be hand-edited. Each entry needs:
 To find a `listUrl`, open the show on tamildhool.tech and copy the URL of the
 page that lists its episodes (not an individual episode).
 
-**Refresh episodes** — `./scripts/refresh.sh`. It scrapes, and if anything
-changed, commits and pushes; the push redeploys the site on its own. Run it on
-a schedule as below.
+**Refresh episodes** — `npm run refresh`. See the daily routine below.
 
-**Run locally** — `npm install`, then `npm run dev`.
+**Run locally** — `npm install`, then `npm run dev`. The dev server reads the
+same `data/shows.json` the live site uses, so run `npm run scrape` first if you
+want today's episodes locally without publishing them.
 
 ## Daily refresh
 
@@ -52,44 +66,63 @@ a schedule as below.
 > browser, so no header tweak fixes it. A residential connection passes it,
 > which is why the same script works from home.
 
-So schedule `scripts/refresh.sh` on a machine at home. On macOS, with launchd —
-save as `~/Library/LaunchAgents/com.maksha.myshow.refresh.plist`, fixing the
-path to the repo:
+So the refresh is run by hand, once a day, from this machine.
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>            <string>com.maksha.myshow.refresh</string>
-  <key>ProgramArguments</key>
-  <array>
-    <string>/Users/a2006035/Documents/maksha/Direct-Link/scripts/refresh.sh</string>
-  </array>
-  <!-- 01:30 local, after the day's episodes are posted. -->
-  <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key>   <integer>1</integer>
-    <key>Minute</key> <integer>30</integer>
-  </dict>
-  <!-- Catches up after the Mac has been asleep at the scheduled time. -->
-  <key>RunAtLoad</key>        <false/>
-  <key>StandardOutPath</key>  <string>/tmp/myshow-refresh.log</string>
-  <key>StandardErrorPath</key><string>/tmp/myshow-refresh.log</string>
-</dict>
-</plist>
+### The daily routine
+
+Two lines in Terminal:
+
+```bash
+cd ~/Documents/maksha/Direct-Link
+npm run refresh
 ```
 
-Then `launchctl load ~/Library/LaunchAgents/com.maksha.myshow.refresh.plist`.
-Check it with `tail /tmp/myshow-refresh.log`.
+That is the whole thing. It scrapes, commits, pushes, and the push makes
+GitHub rebuild and redeploy the site — no build step, no deploy command, no
+GitHub UI.
 
-If the Mac is asleep at 01:30 the job runs at next wake. A missed day is
-harmless — the app keeps showing the previous episode until the next run.
+It takes about a minute. What you should see at the end:
 
-The `Scrape latest episodes` workflow is still in the repo for manual runs and
-would work unchanged on a self-hosted runner, which is the other way to get
-this automated.
+```
+  ok marumagal -> dailymotion 31-07-2026 22min
+  ...
+Wrote 24 shows (24 freshly scraped).
+Pushed. GitHub Pages will redeploy automatically.
+```
+
+Then wait ~1 minute and https://maksha19.github.io/myshow/ has today's
+episodes. Hard-refresh if the phone shows a cached copy.
+
+**Best time to run it:** evening or later, once the day's episodes have been
+posted. Running earlier just means some shows still show yesterday.
+
+### If you only want to look, not publish
+
+```bash
+npm run scrape     # updates data/shows.json locally, pushes nothing
+npm run dev        # check it at http://localhost:5173
+```
+
+To throw those local changes away: `git checkout data/shows.json`.
+To publish them after all: `npm run refresh` picks them up.
+
+### Reading the result
+
+| Last line                          | Meaning                                        |
+| ---------------------------------- | ---------------------------------------------- |
+| `Pushed. GitHub Pages will…`       | Done — new episodes are going live.             |
+| `No episode changes; nothing to push.` | Already up to date. Normal if you run twice. |
+| `Scrape failed; leaving data…`     | Every show failed. Site keeps yesterday's data. |
+| `Push failed — commit is kept…`    | Data is fine, only the upload failed. Re-run.   |
+
+A `!` line names any single show that failed; that show simply keeps its
+previous episode and everything else still publishes.
+
+**Missing a day is harmless.** The app keeps showing the last episode it knew
+about until you run it again.
+
+If you later want this automated, the `Scrape latest episodes` workflow is
+still in the repo and would work unchanged on a self-hosted runner.
 
 ## First-time deploy (GitHub Pages)
 
