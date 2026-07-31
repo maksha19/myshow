@@ -9,13 +9,15 @@ about the upstream video hosts.
 ## How it works
 
 ```
-.github/workflows/scrape.yml  (daily cron)
-        │  node scripts/scrape.mjs
+scripts/refresh.sh  (daily, from a home machine)
+        │  node scripts/scrape.mjs  →  commit + push
         ▼
 data/shows.json  ──imported at build time──►  React SPA  ──►  GitHub Pages
+                        (.github/workflows/deploy.yml, on push to main)
 ```
 
-There is no server. The only moving part is the scheduled Action.
+There is no server. Deploys are fully automatic on push; only the scrape step
+needs a machine, and only because of the Cloudflare block described below.
 
 ## Everyday tasks
 
@@ -33,23 +35,77 @@ commit, done. It is the only file meant to be hand-edited. Each entry needs:
 To find a `listUrl`, open the show on tamildhool.tech and copy the URL of the
 page that lists its episodes (not an individual episode).
 
-**Refresh episodes by hand** — `npm run scrape`, then commit `data/shows.json`.
-The Action does this nightly at 20:00 UTC (01:30 IST); you can also trigger it
-from the Actions tab via *Run workflow*.
+**Refresh episodes** — `./scripts/refresh.sh`. It scrapes, and if anything
+changed, commits and pushes; the push redeploys the site on its own. Run it on
+a schedule as below.
 
 **Run locally** — `npm install`, then `npm run dev`.
 
+## Daily refresh
+
+> **The scrape cannot run on GitHub Actions.** tamildhool.tech is behind a
+> Cloudflare challenge that blocks hosted runners. Measured from a runner
+> (IP `172.174.198.67`): every request to the host returns `403` with
+> `cf-mitigated: challenge` — bare curl, full browser headers, HTTP/1.1, the
+> RSS feed and the wp-json API alike — while a control request to
+> `api.dailymotion.com` returns `200`. Clearing the challenge needs a real
+> browser, so no header tweak fixes it. A residential connection passes it,
+> which is why the same script works from home.
+
+So schedule `scripts/refresh.sh` on a machine at home. On macOS, with launchd —
+save as `~/Library/LaunchAgents/com.maksha.myshow.refresh.plist`, fixing the
+path to the repo:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>            <string>com.maksha.myshow.refresh</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/a2006035/Documents/maksha/Direct-Link/scripts/refresh.sh</string>
+  </array>
+  <!-- 01:30 local, after the day's episodes are posted. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>   <integer>1</integer>
+    <key>Minute</key> <integer>30</integer>
+  </dict>
+  <!-- Catches up after the Mac has been asleep at the scheduled time. -->
+  <key>RunAtLoad</key>        <false/>
+  <key>StandardOutPath</key>  <string>/tmp/myshow-refresh.log</string>
+  <key>StandardErrorPath</key><string>/tmp/myshow-refresh.log</string>
+</dict>
+</plist>
+```
+
+Then `launchctl load ~/Library/LaunchAgents/com.maksha.myshow.refresh.plist`.
+Check it with `tail /tmp/myshow-refresh.log`.
+
+If the Mac is asleep at 01:30 the job runs at next wake. A missed day is
+harmless — the app keeps showing the previous episode until the next run.
+
+The `Scrape latest episodes` workflow is still in the repo for manual runs and
+would work unchanged on a self-hosted runner, which is the other way to get
+this automated.
+
 ## First-time deploy (GitHub Pages)
 
-1. Push this repo to GitHub with `main` as the default branch.
+Already done for [maksha19/myshow](https://github.com/maksha19/myshow) — live at
+**https://maksha19.github.io/myshow/**. Pages source is set to *GitHub Actions*
+and workflow permissions to *Read and write*.
+
+To set it up somewhere else:
+
+1. Push the repo to GitHub with `main` as the default branch.
 2. **Settings → Pages → Source: GitHub Actions.**
-3. **Settings → Actions → General → Workflow permissions: Read and write**
-   (the scraper needs this to commit `data/shows.json`).
+3. **Settings → Actions → General → Workflow permissions: Read and write.**
 4. Push, or run the *Deploy to GitHub Pages* workflow manually.
 
-The site lands at `https://<user>.github.io/<repo>/`. The build derives its
-base path from the repo name automatically, so renaming the repo needs no
-code change.
+The build derives its base path from the repo name automatically, so renaming
+the repo needs no code change.
 
 Routing uses `HashRouter` (`/#/watch/<slug>`) so a direct load or reload of any
 route works on a static host with no rewrite rules.

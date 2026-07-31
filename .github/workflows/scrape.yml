@@ -1,10 +1,18 @@
 name: Scrape latest episodes
 
+# NOTE: there is deliberately no `schedule:` here.
+#
+# tamildhool.tech sits behind a Cloudflare challenge that blocks GitHub's
+# hosted runners outright. Measured from a runner (IP 172.174.198.67): every
+# request to the host returns 403 with `cf-mitigated: challenge` — bare curl,
+# full browser headers, HTTP/1.1, the RSS feed and the wp-json API alike —
+# while a control request to api.dailymotion.com returns 200. Clearing the
+# challenge needs a real browser, so no header tweak fixes it.
+#
+# The daily refresh therefore runs from a machine on a residential
+# connection; see "Daily refresh" in the README. This workflow is kept for
+# manual runs and would start working as-is on a self-hosted runner.
 on:
-  schedule:
-    # 20:00 UTC = 01:30 IST, after the full day's episodes have been posted.
-    # Bump to e.g. '0 */6 * * *' if episodes should appear sooner.
-    - cron: '0 20 * * *'
   workflow_dispatch:
 
 permissions:
