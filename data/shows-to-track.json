@@ -1,0 +1,173 @@
+{
+  "_comment": "The one file a human edits directly. Add or remove entries here to change what the app shows. 'slug' is the app's URL key (/watch/<slug>) and must be unique. 'listUrl' is the show's episode-listing page on tamildhool.tech; the scraper takes whatever is currently the newest episode on that page.",
+  "shows": [
+    {
+      "slug": "annam",
+      "title": "Annam",
+      "titleTamil": "அன்னம்",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/annam/"
+    },
+    {
+      "slug": "ethir-neechal",
+      "title": "Ethir Neechal Thodargirathu",
+      "titleTamil": "எதிர்நீச்சல் தொடர்கிறது",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/ethir-neechal-thodargirathu/"
+    },
+    {
+      "slug": "iru-malargal",
+      "title": "Iru Malargal",
+      "titleTamil": "இரு மலர்கள்",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/iru-malargal/"
+    },
+    {
+      "slug": "lakshmi",
+      "title": "Lakshmi",
+      "titleTamil": "லட்சுமி",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/lakshmi/"
+    },
+    {
+      "slug": "malli",
+      "title": "Malli",
+      "titleTamil": "மல்லி",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/malli/"
+    },
+    {
+      "slug": "marumagal",
+      "title": "Marumagal",
+      "titleTamil": "மருமகள்",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/marumagal/"
+    },
+    {
+      "slug": "moondru-mudichi",
+      "title": "Moondru Mudichi",
+      "titleTamil": "மூன்று முடிச்சு",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/moondru-mudichi/"
+    },
+    {
+      "slug": "poongodi",
+      "title": "Poongodi",
+      "titleTamil": "பூங்கொடி",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/poongodi/"
+    },
+    {
+      "slug": "pudhu-vasantham",
+      "title": "Pudhu Vasantham",
+      "titleTamil": "புது வசந்தம்",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/pudhu-vasantham/"
+    },
+    {
+      "slug": "siragugal",
+      "title": "Siragugal",
+      "titleTamil": "சிறகுகள்",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/siragugal/"
+    },
+    {
+      "slug": "thulasi",
+      "title": "Thulasi",
+      "titleTamil": "துளசி",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/thulasi/"
+    },
+    {
+      "slug": "vinodhini",
+      "title": "Vinodhini",
+      "titleTamil": "வினோதினி",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/vinodhini/"
+    },
+    {
+      "slug": "ayyanar-thunai",
+      "title": "Ayyanar Thunai",
+      "titleTamil": "ஐயனார் துணை",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/ayyanar-thunai/"
+    },
+    {
+      "slug": "azhagae-azhagu",
+      "title": "Azhagae Azhagu",
+      "titleTamil": "அழகே அழகு",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/azhagae-azhagu/"
+    },
+    {
+      "slug": "chinna-marumagal",
+      "title": "Chinna Marumagal",
+      "titleTamil": "சின்ன மருமகள்",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/chinna-marumagal/"
+    },
+    {
+      "slug": "kadhal-kadhal-kadhal",
+      "title": "Kadhal Kadhal Kadhal",
+      "titleTamil": "காதல் காதல் காதல்",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/kadhal-kadhal-kadhal/"
+    },
+    {
+      "slug": "kanmani-anbudan",
+      "title": "Kanmani Anbudan",
+      "titleTamil": "கண்மணி அன்புடன்",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/kanmani-anbudan/"
+    },
+    {
+      "slug": "onna-irukka-kaththukkanum",
+      "title": "Onna Irukka Kaththukkanum",
+      "titleTamil": "ஒண்ணா இருக்க கத்துக்கணும்",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/onna-irukka-kaththukkanum/"
+    },
+    {
+      "slug": "pandian-stores",
+      "title": "Pandian Stores 2",
+      "titleTamil": "பாண்டியன் ஸ்டோர்ஸ் 2",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/pandian-stores-s-2/"
+    },
+    {
+      "slug": "sindhu-bairavi",
+      "title": "Sindhu Bairavi Kacheri Arambam",
+      "titleTamil": "சிந்து பைரவி கச்சேரி ஆரம்பம்",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/sindhu-bairavi-kacheri-arambam/"
+    },
+    {
+      "slug": "siragadikka-aasai",
+      "title": "Siragadikka Aasai",
+      "titleTamil": "சிறகடிக்க ஆசை",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/siragadikka-aasai/"
+    },
+    {
+      "slug": "suttum-vizhi-sudare",
+      "title": "Suttum Vizhi Sudare",
+      "titleTamil": "சுட்டும் விழி சுடரே",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/suttum-vizhi-sudare/"
+    },
+    {
+      "slug": "thaai-maaman",
+      "title": "Thaai Maaman",
+      "titleTamil": "தாய் மாமன்",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/thaai-maaman/"
+    },
+    {
+      "slug": "thendrale-mella-pesu",
+      "title": "Thendrale Mella Pesu",
+      "titleTamil": "தென்றலே மெல்ல பேசு",
+      "channel": "Vijay TV",
+      "listUrl": "https://www.tamildhool.tech/vijay-tv/vijay-tv-serial/thendrale-mella-pesu/"
+    }
+  ]
+}

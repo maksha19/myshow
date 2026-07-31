@@ -1,0 +1,54 @@
+name: Scrape latest episodes
+
+on:
+  schedule:
+    # 20:00 UTC = 01:30 IST, after the full day's episodes have been posted.
+    # Bump to e.g. '0 */6 * * *' if episodes should appear sooner.
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # No dependencies — the scraper is plain Node with built-in fetch.
+      - run: node scripts/scrape.mjs
+
+      - id: commit
+        run: |
+          if git diff --quiet -- data/shows.json; then
+            echo "No episode changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/shows.json
+          git commit -m "data: refresh latest episodes"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  # Only redeploy when the data actually moved.
+  deploy:
+    needs: scrape
+    if: needs.scrape.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
