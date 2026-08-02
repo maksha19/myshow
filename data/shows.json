@@ -1,4 +1,13 @@
 {
+  "kayal": {
+    "title": "Kayal",
+    "titleTamil": "காயல்",
+    "channel": "Sun TV",
+    "episodeLabel": "01-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/9a28eb2f-74eb-4354-9896-dd6a4ebd6417/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "9a28eb2f-74eb-4354-9896-dd6a4ebd6417"
+  },
   "annam": {
     "title": "Annam",
     "titleTamil": "அன்னம்",
