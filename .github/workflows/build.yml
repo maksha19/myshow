@@ -1,0 +1,42 @@
+name: Build check
+
+# Deploying no longer happens here. GitHub Pages serves the gh-pages branch,
+# which is published straight from a laptop by `npm run deploy` — that takes
+# seconds, where waiting on a runner took minutes and kept tripping over
+# competing Pages deployments.
+#
+# This workflow only proves main still compiles, so a broken commit is caught
+# even though nothing in CI publishes it.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Same base path the real publish uses, so a base-related break shows up
+      # here rather than on the live site.
+      - run: npm run build
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/

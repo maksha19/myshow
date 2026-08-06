@@ -10,14 +10,20 @@ about the upstream video hosts.
 
 ```
 npm run refresh   (once a day, from this machine)
-        │  scrape tamildhool  →  commit  →  push
-        ▼
-data/shows.json  ──imported at build time──►  React SPA  ──►  GitHub Pages
-                        (.github/workflows/deploy.yml, on push to main)
+   │
+   ├─ scrape tamildhool → data/shows.json → commit + push to main
+   └─ npm run deploy → vite build → push dist/ to the gh-pages branch
+                                          ▼
+                              GitHub Pages serves gh-pages
 ```
 
-There is no server. Deploying is automatic on push; only the scrape step needs
-a machine, and only because of the Cloudflare block described below.
+There is no server, and nothing in CI publishes. `main` holds the source and
+the data; the `gh-pages` branch holds the built site and is what the world
+sees. Publishing from here takes seconds — waiting on a runner took minutes
+and kept tripping over competing Pages deployments.
+
+GitHub Actions only runs a **build check** on push, to catch a commit that
+does not compile.
 
 ## Commands
 
@@ -28,10 +34,14 @@ Everything is an npm script. These are all of them:
 | `npm install`        | One time, after cloning.                                          |
 | `npm run dev`        | Local dev server at http://localhost:5173 with live reload.       |
 | `npm run scrape`     | **Fetch** latest episodes into `data/shows.json`. Does not push.  |
-| `npm run refresh`    | **Daily driver:** scrape, then commit + push only if data changed. |
-| `npm run deploy`     | Push `main` by hand (only if you committed something yourself).    |
-| `npm run build`      | Production build into `dist/`. CI does this for you.               |
+| `npm run refresh`    | **Daily driver:** scrape, commit + push, then publish.             |
+| `npm run deploy`     | Build and publish to `gh-pages`. Use after a code change.          |
+| `npm run build`      | Production build into `dist/` without publishing.                  |
 | `npm run preview`    | Serve the built `dist/` locally to check a production build.        |
+
+`npm run refresh` already calls `npm run deploy` at the end, so the daily
+routine is one command. Reach for `deploy` on its own when you have changed
+code rather than data.
 
 ## Everyday tasks
 
@@ -77,21 +87,26 @@ cd ~/Documents/maksha/Direct-Link
 npm run refresh
 ```
 
-That is the whole thing. It scrapes, commits, pushes, and the push makes
-GitHub rebuild and redeploy the site — no build step, no deploy command, no
-GitHub UI.
+That is the whole thing. It scrapes, commits and pushes the data, then builds
+and publishes the site — no separate deploy command, no GitHub UI, no waiting
+on a runner.
 
-It takes about a minute. What you should see at the end:
+It takes well under a minute. What you should see at the end:
 
 ```
   ok marumagal -> dailymotion 31-07-2026 22min
   ...
 Wrote 24 shows (24 freshly scraped).
-Pushed. GitHub Pages will redeploy automatically.
+Pushed the new data to main.
+
+Building with base /myshow/ ...
+Publishing dist/ to the gh-pages branch ...
+Published. https://maksha19.github.io/myshow/
 ```
 
-Then wait ~1 minute and https://maksha19.github.io/myshow/ has today's
-episodes. Hard-refresh if the phone shows a cached copy.
+The site is live as soon as that last line appears — usually a few seconds,
+occasionally up to a minute while GitHub's CDN catches up. Hard-refresh if the
+phone shows a cached copy.
 
 **Best time to run it:** evening or later, once the day's episodes have been
 posted. Running earlier just means some shows still show yesterday.
@@ -108,12 +123,12 @@ To publish them after all: `npm run refresh` picks them up.
 
 ### Reading the result
 
-| Last line                          | Meaning                                        |
-| ---------------------------------- | ---------------------------------------------- |
-| `Pushed. GitHub Pages will…`       | Done — new episodes are going live.             |
+| Last line                              | Meaning                                     |
+| -------------------------------------- | ------------------------------------------- |
+| `Published. https://…`                 | Done — the new episodes are live.            |
 | `No episode changes; nothing to push.` | Already up to date. Normal if you run twice. |
-| `Scrape failed; leaving data…`     | Every show failed. Site keeps yesterday's data. |
-| `Push failed — commit is kept…`    | Data is fine, only the upload failed. Re-run.   |
+| `Scrape failed; leaving data…`         | Every show failed. Site keeps yesterday's data. |
+| `Push failed — commit is kept…`        | Data is fine, only the upload failed. Re-run. |
 
 A `!` line names any single show that failed; that show simply keeps its
 previous episode and everything else still publishes.
@@ -121,24 +136,32 @@ previous episode and everything else still publishes.
 **Missing a day is harmless.** The app keeps showing the last episode it knew
 about until you run it again.
 
+If the scrape succeeded but publishing failed, the data is already committed —
+just run `npm run deploy` on its own; there is no need to scrape again.
+
 If you later want this automated, the `Scrape latest episodes` workflow is
-still in the repo and would work unchanged on a self-hosted runner.
+still in the repo and would work on a self-hosted runner, though it would need
+a publish step adding.
 
 ## First-time deploy (GitHub Pages)
 
 Already done for [maksha19/myshow](https://github.com/maksha19/myshow) — live at
-**https://maksha19.github.io/myshow/**. Pages source is set to *GitHub Actions*
-and workflow permissions to *Read and write*.
+**https://maksha19.github.io/myshow/**, served from the `gh-pages` branch.
 
 To set it up somewhere else:
 
 1. Push the repo to GitHub with `main` as the default branch.
-2. **Settings → Pages → Source: GitHub Actions.**
-3. **Settings → Actions → General → Workflow permissions: Read and write.**
-4. Push, or run the *Deploy to GitHub Pages* workflow manually.
+2. `npm run deploy` — this creates the `gh-pages` branch and pushes the build.
+3. **Settings → Pages → Source: Deploy from a branch → `gh-pages` / `/ (root)`.**
 
-The build derives its base path from the repo name automatically, so renaming
-the repo needs no code change.
+Do it in that order: the branch has to exist before Pages can be pointed at it.
+
+The build derives its base path from the git remote, so renaming the repo needs
+no code change.
+
+> Pages allows exactly **one** source, so this replaces the Actions-based
+> deploy rather than sitting alongside it as a fallback. `main` never publishes
+> anything by itself — only `npm run deploy` does.
 
 Routing uses `HashRouter` (`/#/watch/<slug>`) so a direct load or reload of any
 route works on a static host with no rewrite rules.

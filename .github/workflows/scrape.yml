@@ -51,12 +51,8 @@ jobs:
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-  # Only redeploy when the data actually moved.
-  deploy:
-    needs: scrape
-    if: needs.scrape.outputs.changed == 'true'
-    uses: ./.github/workflows/deploy.yml
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+      # Publishing is not wired up here: Pages now serves the gh-pages branch,
+      # published from a laptop with `npm run deploy`. If this workflow is ever
+      # made to work on a self-hosted runner, add that step here.
+      - if: steps.commit.outputs.changed == 'true'
+        run: echo "Data committed. Run 'npm run deploy' locally to publish it."

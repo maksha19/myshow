@@ -1,6 +1,13 @@
 {
   "_comment": "The one file a human edits directly. Add or remove entries here to change what the app shows. 'slug' is the app's URL key (/watch/<slug>) and must be unique. 'listUrl' is the show's episode-listing page on tamildhool.tech; the scraper takes whatever is currently the newest episode on that page.",
   "shows": [
+        {
+      "slug": "kayal",
+      "title": "Kayal",
+      "titleTamil": "காயல்",
+      "channel": "Sun TV",
+      "listUrl": "https://www.tamildhool.tech/sun-tv/sun-tv-serial/kayal/"
+    },
     {
       "slug": "annam",
       "title": "Annam",

@@ -46,10 +46,15 @@ git add data/shows.json
 git commit -q -m "data: refresh latest episodes"
 
 if git push -q origin main; then
-  echo "Pushed. GitHub Pages will redeploy automatically."
+  echo "Pushed the new data to main."
 else
   # Most likely an expired credential. The commit is kept so a later run or a
   # manual push still carries it.
   echo "Push failed — commit is kept locally, push it when you can."
   exit 1
 fi
+
+# Publish from here rather than waiting on a runner. Note this is what makes
+# the site update; pushing to main only stores the data.
+echo
+bash scripts/publish.sh
