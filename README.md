@@ -123,12 +123,14 @@ To publish them after all: `npm run refresh` picks them up.
 
 ### Reading the result
 
-| Last line                              | Meaning                                     |
-| -------------------------------------- | ------------------------------------------- |
-| `Published. https://…`                 | Done — the new episodes are live.            |
-| `No episode changes; nothing to push.` | Already up to date. Normal if you run twice. |
-| `Scrape failed; leaving data…`         | Every show failed. Site keeps yesterday's data. |
-| `Push failed — commit is kept…`        | Data is fine, only the upload failed. Re-run. |
+| Last line                          | Meaning                                          |
+| ---------------------------------- | ------------------------------------------------ |
+| `Published. https://…`             | Done — whatever you have is live.                 |
+| `Scrape failed; leaving data…`     | Every show failed. Site keeps yesterday's data.   |
+| `Push failed — commit is kept…`    | Data is fine, only the upload failed. Re-run.     |
+
+`No episode changes to commit.` partway through just means nothing new was
+posted yet; it still republishes, so running twice is always safe.
 
 A `!` line names any single show that failed; that show simply keeps its
 previous episode and everything else still publishes.
