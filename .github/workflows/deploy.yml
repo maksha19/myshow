@@ -14,18 +14,27 @@ permissions:
   pages: write
   id-token: write
 
-# Never let two deploys race; let an in-flight one finish.
+# Only ever one deploy in flight, and the newest push always wins.
+#
+# cancel-in-progress is deliberately TRUE. With it false, a second trigger
+# queues behind the running one and a third cancels the queued one, while the
+# Pages API cancels the older deployment out from under the run that created
+# it — which surfaces as "Error: Deployment cancelled" and a red build even
+# though the site published fine. Superseding cleanly is the correct
+# behaviour here: only the latest data is ever worth publishing.
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      # v4 of these actions runs on the deprecated Node 20 runtime.
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -37,16 +46,21 @@ jobs:
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
 
-      - uses: actions/upload-pages-artifact@v3
+      # Keep this major version in step with deploy-pages below — the artifact
+      # format is shared between them.
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # A Pages deployment that hangs should fail fast rather than sit for six
+    # hours holding the concurrency slot.
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
