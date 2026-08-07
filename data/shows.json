@@ -13,10 +13,11 @@
     "title": "Annam",
     "titleTamil": "அன்னம்",
     "channel": "Sun TV",
-    "episodeLabel": "05-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/72a1c2ca-a331-432d-98d2-91ecbba80660/thumbnail.jpg",
-    "source": "bunny",
-    "videoId": "72a1c2ca-a331-432d-98d2-91ecbba80660"
+    "episodeLabel": "06-08-2026",
+    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/kV6gohgoW1aE86IuBAi",
+    "source": "dailymotion",
+    "videoId": "kV6gohgoW1aE86IuBAi",
+    "duration": 1297
   },
   "ethir-neechal": {
     "title": "Ethir Neechal Thodargirathu",
@@ -60,19 +61,21 @@
     "title": "Marumagal",
     "titleTamil": "மருமகள்",
     "channel": "Sun TV",
-    "episodeLabel": "05-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/faf28f26-ab5c-42ad-a6cb-3a8479b512da/thumbnail.jpg",
-    "source": "bunny",
-    "videoId": "faf28f26-ab5c-42ad-a6cb-3a8479b512da"
+    "episodeLabel": "06-08-2026",
+    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k3zku6fFcxGzQKIuSVo",
+    "source": "dailymotion",
+    "videoId": "k3zku6fFcxGzQKIuSVo",
+    "duration": 1303
   },
   "moondru-mudichi": {
     "title": "Moondru Mudichi",
     "titleTamil": "மூன்று முடிச்சு",
     "channel": "Sun TV",
-    "episodeLabel": "05-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/0b4814b7-844c-4fa1-9b37-bf3e17cf09aa/thumbnail.jpg",
-    "source": "bunny",
-    "videoId": "0b4814b7-844c-4fa1-9b37-bf3e17cf09aa"
+    "episodeLabel": "06-08-2026",
+    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k1KoCSgb0EAbgsIuZHo",
+    "source": "dailymotion",
+    "videoId": "k1KoCSgb0EAbgsIuZHo",
+    "duration": 2669
   },
   "poongodi": {
     "title": "Poongodi",
@@ -127,50 +130,46 @@
     "title": "Ayyanar Thunai",
     "titleTamil": "ஐயனார் துணை",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k5jp0Mgo8uGrcAItdFY",
-    "source": "dailymotion",
-    "videoId": "k5jp0Mgo8uGrcAItdFY",
-    "duration": 1158
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/d7a2bdf8-7949-445a-8e78-ccbb99a6074c/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "d7a2bdf8-7949-445a-8e78-ccbb99a6074c"
   },
   "azhagae-azhagu": {
     "title": "Azhagae Azhagu",
     "titleTamil": "அழகே அழகு",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k7b5jIOhtfJpeBItj8u",
-    "source": "dailymotion",
-    "videoId": "k7b5jIOhtfJpeBItj8u",
-    "duration": 1230
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/1eb97315-fa1e-49d0-a24c-8a12d495df84/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "1eb97315-fa1e-49d0-a24c-8a12d495df84"
   },
   "chinna-marumagal": {
     "title": "Chinna Marumagal",
     "titleTamil": "சின்ன மருமகள்",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k7gtFwKsVljSoQItdG6",
-    "source": "dailymotion",
-    "videoId": "k7gtFwKsVljSoQItdG6",
-    "duration": 1228
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/4791e3b4-a71b-4f61-834b-a40a5bd74300/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "4791e3b4-a71b-4f61-834b-a40a5bd74300"
   },
   "kadhal-kadhal-kadhal": {
     "title": "Kadhal Kadhal Kadhal",
     "titleTamil": "காதல் காதல் காதல்",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/c898df5f-2b92-4479-b5e5-58424c2191ce/thumbnail.jpg",
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/b0e510bd-5fc3-4987-8d28-eb398d18e52e/thumbnail.jpg",
     "source": "bunny",
-    "videoId": "c898df5f-2b92-4479-b5e5-58424c2191ce"
+    "videoId": "b0e510bd-5fc3-4987-8d28-eb398d18e52e"
   },
   "kanmani-anbudan": {
     "title": "Kanmani Anbudan",
     "titleTamil": "கண்மணி அன்புடன்",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k5ypiG41GyYt8uItdG2",
-    "source": "dailymotion",
-    "videoId": "k5ypiG41GyYt8uItdG2",
-    "duration": 1177
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/43c3e481-b17d-4a92-9cc5-706f3cebda37/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "43c3e481-b17d-4a92-9cc5-706f3cebda37"
   },
   "onna-irukka-kaththukkanum": {
     "title": "Onna Irukka Kaththukkanum",
@@ -186,59 +185,54 @@
     "title": "Pandian Stores 2",
     "titleTamil": "பாண்டியன் ஸ்டோர்ஸ் 2",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k6al9Oax2H8MHwItdFU",
-    "source": "dailymotion",
-    "videoId": "k6al9Oax2H8MHwItdFU",
-    "duration": 1225
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/dca640f4-06f9-454b-bf3f-656762ed15fd/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "dca640f4-06f9-454b-bf3f-656762ed15fd"
   },
   "sindhu-bairavi": {
     "title": "Sindhu Bairavi Kacheri Arambam",
     "titleTamil": "சிந்து பைரவி கச்சேரி ஆரம்பம்",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/1fc742db-762b-4f40-ae33-c9613998c7d6/thumbnail.jpg",
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/cf1f50a3-850f-4d9c-820b-a16f12a4706b/thumbnail.jpg",
     "source": "bunny",
-    "videoId": "1fc742db-762b-4f40-ae33-c9613998c7d6"
+    "videoId": "cf1f50a3-850f-4d9c-820b-a16f12a4706b"
   },
   "siragadikka-aasai": {
     "title": "Siragadikka Aasai",
     "titleTamil": "சிறகடிக்க ஆசை",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k3H3eluB2pf1VkItdGe",
-    "source": "dailymotion",
-    "videoId": "k3H3eluB2pf1VkItdGe",
-    "duration": 1246
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/3913223e-23f8-4c83-8357-4a435be14631/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "3913223e-23f8-4c83-8357-4a435be14631"
   },
   "suttum-vizhi-sudare": {
     "title": "Suttum Vizhi Sudare",
     "titleTamil": "சுட்டும் விழி சுடரே",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/kVfDpj2stvkMd4ItdrU",
-    "source": "dailymotion",
-    "videoId": "kVfDpj2stvkMd4ItdrU",
-    "duration": 1204
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/c60eea66-7bbd-495a-b624-d6f7ac53e00d/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "c60eea66-7bbd-495a-b624-d6f7ac53e00d"
   },
   "thaai-maaman": {
     "title": "Thaai Maaman",
     "titleTamil": "தாய் மாமன்",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k7G9OvFjSAKteZItdrQ",
-    "source": "dailymotion",
-    "videoId": "k7G9OvFjSAKteZItdrQ",
-    "duration": 1218
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/5e16427d-849d-43e8-b88e-3d83e254ce8c/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "5e16427d-849d-43e8-b88e-3d83e254ce8c"
   },
   "thendrale-mella-pesu": {
     "title": "Thendrale Mella Pesu",
     "titleTamil": "தென்றலே மெல்ல பேசு",
     "channel": "Vijay TV",
-    "episodeLabel": "06-08-2026",
-    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k1MbqUvNi4dXpfItdGi",
-    "source": "dailymotion",
-    "videoId": "k1MbqUvNi4dXpfItdGi",
-    "duration": 1224
+    "episodeLabel": "07-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/ce064da1-5d9d-498a-96c2-ab4e4420f6a5/thumbnail.jpg",
+    "source": "bunny",
+    "videoId": "ce064da1-5d9d-498a-96c2-ab4e4420f6a5"
   }
 }
