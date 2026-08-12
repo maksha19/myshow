@@ -3,10 +3,10 @@
     "title": "Kayal",
     "titleTamil": "காயல்",
     "channel": "Sun TV",
-    "episodeLabel": "11-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/dfb0ab9c-78f8-459c-8ed4-7be578c6db74/thumbnail.jpg",
+    "episodeLabel": "12-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/9b5c4d49-bf68-4cba-b36b-d9eae8d1ac43/thumbnail.jpg",
     "source": "bunny",
-    "videoId": "dfb0ab9c-78f8-459c-8ed4-7be578c6db74"
+    "videoId": "9b5c4d49-bf68-4cba-b36b-d9eae8d1ac43"
   },
   "annam": {
     "title": "Annam",
@@ -22,10 +22,11 @@
     "title": "Ethir Neechal Thodargirathu",
     "titleTamil": "எதிர்நீச்சல் தொடர்கிறது",
     "channel": "Sun TV",
-    "episodeLabel": "11-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/50aa6f41-6fee-423e-83ee-1edcdbfbfdfb/thumbnail.jpg",
-    "source": "bunny",
-    "videoId": "50aa6f41-6fee-423e-83ee-1edcdbfbfdfb"
+    "episodeLabel": "12-08-2026",
+    "thumbnail": "https://www.dailymotion.com/thumbnail/1280x720/video/k5UzfNzP8TtrPhIGaCe",
+    "source": "dailymotion",
+    "videoId": "k5UzfNzP8TtrPhIGaCe",
+    "duration": 1287
   },
   "iru-malargal": {
     "title": "Iru Malargal",
@@ -49,10 +50,10 @@
     "title": "Malli",
     "titleTamil": "மல்லி",
     "channel": "Sun TV",
-    "episodeLabel": "11-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/c8b8ba41-e5f4-491b-ae60-8f4af722eca1/thumbnail.jpg",
+    "episodeLabel": "12-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/d00962a2-7e9e-4d02-a0b4-427a4601344d/thumbnail.jpg",
     "source": "bunny",
-    "videoId": "c8b8ba41-e5f4-491b-ae60-8f4af722eca1"
+    "videoId": "d00962a2-7e9e-4d02-a0b4-427a4601344d"
   },
   "marumagal": {
     "title": "Marumagal",
@@ -78,19 +79,19 @@
     "title": "Poongodi",
     "titleTamil": "பூங்கொடி",
     "channel": "Sun TV",
-    "episodeLabel": "11-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/65b1cac2-26b3-4cea-b58e-8f0d3feaab21/thumbnail.jpg",
+    "episodeLabel": "12-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/8f69bad1-d0b7-4998-af86-bb793e603c0b/thumbnail.jpg",
     "source": "bunny",
-    "videoId": "65b1cac2-26b3-4cea-b58e-8f0d3feaab21"
+    "videoId": "8f69bad1-d0b7-4998-af86-bb793e603c0b"
   },
   "pudhu-vasantham": {
     "title": "Pudhu Vasantham",
     "titleTamil": "புது வசந்தம்",
     "channel": "Sun TV",
-    "episodeLabel": "11-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/47e28c24-3794-4e6e-90d0-a916eba143c3/thumbnail.jpg",
+    "episodeLabel": "12-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/9e904721-b238-46dc-9077-110cbeb7d31f/thumbnail.jpg",
     "source": "bunny",
-    "videoId": "47e28c24-3794-4e6e-90d0-a916eba143c3"
+    "videoId": "9e904721-b238-46dc-9077-110cbeb7d31f"
   },
   "siragugal": {
     "title": "Siragugal",
@@ -106,10 +107,10 @@
     "title": "Thulasi",
     "titleTamil": "துளசி",
     "channel": "Sun TV",
-    "episodeLabel": "11-08-2026",
-    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/222e0a01-8476-4209-a2ee-f40ddbbd9a84/thumbnail.jpg",
+    "episodeLabel": "12-08-2026",
+    "thumbnail": "https://vz-8cf4325c-bc5.b-cdn.net/3ac64b0e-f47b-42f9-b2e0-bc4ac3b9c0ff/thumbnail.jpg",
     "source": "bunny",
-    "videoId": "222e0a01-8476-4209-a2ee-f40ddbbd9a84"
+    "videoId": "3ac64b0e-f47b-42f9-b2e0-bc4ac3b9c0ff"
   },
   "vinodhini": {
     "title": "Vinodhini",
