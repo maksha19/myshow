@@ -37,6 +37,13 @@ const CONCURRENCY = 4
 const FETCH_TIMEOUT_MS = 20_000
 const RETRIES = 2
 
+/**
+ * A show whose newest available episode is older than this has gone quiet at
+ * the source — ended, on a break, or renamed. Matches STALE_AFTER_DAYS in
+ * src/shows.js so the daily log and the orange badge in the app agree.
+ */
+const STALE_AFTER_DAYS = 4
+
 const warnings = []
 function warn(slug, message) {
   warnings.push(`${slug}: ${message}`)
@@ -161,6 +168,16 @@ async function scrapeShow(show) {
   }
 }
 
+/** Whole days between an episode label ('DD-MM-YYYY') and today, or null. */
+function daysOld(label) {
+  const match = /^(\d{2})-(\d{2})-(\d{4})$/.exec(label ?? '')
+  if (!match) return null
+  const [, dd, mm, yyyy] = match
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return Math.round((today - new Date(Number(yyyy), Number(mm) - 1, Number(dd))) / 86_400_000)
+}
+
 /** Runs tasks with a fixed worker pool so we don't hammer the site. */
 async function mapLimit(items, limit, fn) {
   const results = new Array(items.length)
@@ -211,6 +228,16 @@ async function main() {
   // and shows removed from tracking drop out.
   const output = Object.fromEntries(entries.filter(Boolean))
   await writeFile(OUT_FILE, `${JSON.stringify(output, null, 2)}\n`, 'utf8')
+
+  // A scrape can succeed while the source simply has nothing newer. That reads
+  // as "ok" above and is otherwise invisible until the badge in the app turns
+  // orange days later, so call it out here too.
+  for (const [slug, entry] of Object.entries(output)) {
+    const age = daysOld(entry.episodeLabel)
+    if (age !== null && age > STALE_AFTER_DAYS) {
+      warn(slug, `no new episode at the source for ${age} days (latest ${entry.episodeLabel})`)
+    }
+  }
 
   console.log(`\nWrote ${Object.keys(output).length} shows (${scraped} freshly scraped).`)
   if (warnings.length) {
